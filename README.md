@@ -7,5 +7,7 @@ lista de artefatos
 professor Alessandro Fukuta Fatec franca-sp
 
 Participantes:
+
 Antonio de Azevedo Cabreira
+
 Vilson Teixeira Junior
