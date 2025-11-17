@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+skinparam linetype ortho
+
+actor "Usuário" as Usuario
+
+rectangle "Sistema" {
+  usecase "Realizar Login" as UC_Login
+  usecase "Criar Conta" as UC_CriarConta
+  usecase "Criar Projeto" as UC_CriarProjeto
+  usecase "Acessar Projeto" as UC_AcessarProjeto
+  usecase "Alterar Projeto" as UC_AlterarProjeto
+
+  usecase "Salvar\nLocalmente" as UC_SalvarLocal
+  usecase "Salvar na\nNuven" as UC_SalvarNuvem
+}
+
+' --- Relações reais ---
+Usuario --> UC_Login
+Usuario --> UC_CriarConta
+UC_Login--> UC_AcessarProjeto
+UC_Login--> UC_CriarProjeto
+UC_CriarProjeto--> UC_AcessarProjeto
+UC_AcessarProjeto--> UC_AlterarProjeto
+UC_AlterarProjeto--> UC_SalvarNuvem
+
+' --- Extensões / exceções (mantendo-as limpas) ---
+UC_Login -down-> UC_CriarConta : <<extend>>
+UC_CriarConta -down-> UC_Login : <<extend>>
+UC_CriarConta -down-> UC_SalvarNuvem : <<extend>>
+UC_SalvarNuvem -right-> UC_SalvarLocal : <<extend>>
+@enduml
